@@ -28,7 +28,6 @@ end
 
 'path'(Input, Index) ->
 	p(Input, Index, 'path', fun(I,D) -> (p_choose([p_seq([p_string(<<".">>), fun 'var'/2, p_optional(fun 'path'/2)]), p_seq([p_string(<<"[">>), fun 'int'/2, p_string(<<"]">>), p_optional(fun 'path'/2)])]))(I,D) end, fun(Node, Idx) -> 
-io:format("Node: ~p~n", [Node]),
 case Node of
 	[<<".">>, Key, []] ->
 		fun({struct, Obj}) ->
