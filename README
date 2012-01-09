@@ -1,0 +1,20 @@
+This is the built version of the erlang file from (http://www.progski.net/blog/2010/destructuring_json_in_erlang_made_easy.html)
+
+USAGE:
+<pre>
+1> Obj = mochijson2:decode("{ \"post\": { \"title\": \"Destructuring JSON in Erlang Made Easy\" }}").
+{struct,[{<<"post">>,
+          {struct,[{<<"title">>,
+                    <<"Destructuring JSON in Erlang Made Easy">>}]}}]}
+
+2> json:destructure("Obj.post.title", Obj).
+<<"Destructuring JSON in Erlang Made Easy">>
+
+3> Obj2 = mochijson2:decode("{ \"person\": { \"name\": \"ryan\", \"friends\": [ \"Brendan\", \"Smokey\", \"Bams\" ] }}").
+{struct,[{<<"person">>,
+          {struct,[{<<"name">>,<<"ryan">>},
+                   {<<"friends">>,[<<"Brendan">>,<<"Smokey">>,<<"Bams">>]}]}}]}
+
+4> json:destructure("Obj.person.friends[1]", Obj2).
+<<"Smokey">>
+</pre>
